@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>XDAEX Trading and Market Data API Specification ^XDAEX 交易及行情API规范</title>
+    <title>HashKey Pro Trading and Market Data API Specification ^HashKey Pro 交易及行情API规范</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -375,9 +375,9 @@
 <li>若用户的私钥或密钥发生丢失、被盗用等异常情况，可在交易所网页的“用户中心-- API 接口”中删除对应的 API-KEY ，再申请新的 API-KEY 。</li>
 </ul>
 
-<p>For security reasons, an API-KEY can be blacklisted by the administrator. If the API-KEY is blacklisted, the API user can send an email to support@xdaex.com and apply to be removed from the blacklist.</p>
+<p>For security reasons, an API-KEY can be blacklisted by the administrator. If the API-KEY is blacklisted, the API user can send an email to support@pro.hashkey.com and apply to be removed from the blacklist.</p>
 
-<p>由于安全原因，某 API-KEY 可能被管理员加入黑名单。若 API-KEY 处于黑名单中， API 用户可发送邮件至 support@xdaex.com ，申请从黑名单中移除。</p>
+<p>由于安全原因，某 API-KEY 可能被管理员加入黑名单。若 API-KEY 处于黑名单中， API 用户可发送邮件至 support@pro.hashkey.com ，申请从黑名单中移除。</p>
 <h3 id='1-1-2-query-info-and-subscribe-to-websocket-flow-websocket'>1.1.2. Query Info and Subscribe to WebSocket Flow ^查询信息和订阅 WebSocket 流</h3>
 <p>Before trading, it is recommended to call the following REST interface to query the server time, instruments, asset balances and other related information to ensure that the user&#39;s trading program is in the correct status:</p>
 
@@ -443,12 +443,12 @@
 <li>Test Environment: In order to protect users&#39; assets, it is highly recommended that API users complete the necessary system tests in the test environment before accessing the production environment for trading. 
 
 <ul>
-<li>Domain name: api-test.xdaex.com</li>
+<li>Domain name: <a href="api-test.pro.hashkey.com">api-test.pro.hashkey.com</a></li>
 </ul></li>
 <li>Preview Environment: To help users prepare for API updates, conduct compatible tests for instance, all API updates take effect in the preview environment first. Then, after a preannounced period of time, the test environment and the production environment will be updated.
 
 <ul>
-<li>Domain name: api-preview.xdaex.com</li>
+<li>Domain name: <a href="api-preview.pro.hashkey.com">api-preview.pro.hashkey.com</a></li>
 </ul></li>
 </ul>
 
@@ -458,36 +458,36 @@
 <li>测试环境：为了保护用户资产，建议 API 用户在测试环境中完成必要的系统测试后，再接入生产系统进行交易。
 
 <ul>
-<li>域名：api-test.xdaex.com</li>
+<li>域名：<a href="api-test.pro.hashkey.com">api-test.pro.hashkey.com</a></li>
 </ul></li>
 <li>预览环境：每次 API 功能迭代时会先对预览环境进行升级，以便于用户尽早开展兼容性测试等升级准备工作，并将在约定的一段时间后同步更新测试环境和生产环境。
 
 <ul>
-<li>域名：api-preview.xdaex.com</li>
+<li>域名：<a href="api-preview.pro.hashkey.com">api-preview.pro.hashkey.com</a></li>
 </ul></li>
 </ul>
 
-<p>API users can send an email to support@xdaex.com to apply for accessing the test environment and the preview environment.</p>
+<p>API users can send an email to support@pro.hashkey.com to apply for accessing the test environment and the preview environment.</p>
 
-<p>API 用户可以发送邮件至 support@xdaex.com ，申请使用测试环境和预览环境。</p>
+<p>API 用户可以发送邮件至 support@pro.hashkey.com ，申请使用测试环境和预览环境。</p>
 <h1 id='2-rest-interface-description-emsp-rest'>2. REST Interface Description<br \>&emsp;^REST接口说明</h1><h2 id='2-1-http-request-url-emsp-http-url'>2.1. HTTP Request URL<br \>&emsp;^HTTP 请求 URL</h2>
-<p>The REST interface requests a URL as: https://xdaex.com/APITrade/v1/account/assets
+<p>The REST interface requests a URL as: https://pro.hashkey.com/APITrade/v1/account/assets
 This request URL contains the following main components:</p>
 
 <ul>
 <li>Protocol: https</li>
-<li>Domain name: xdaex.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
+<li>Domain name: pro.hashkey.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
 <li>Interface name: APITrade</li>
 <li>Version: v1</li>
 <li>Path: Different functions need to be accessed via different paths. For example: query the user&#39;s asset balance via /account/assets.</li>
 </ul>
 
-<p>REST 接口请求 URL 形如： https://xdaex.com/APITrade/v1/account/assets
+<p>REST 接口请求 URL 形如： https://pro.hashkey.com/APITrade/v1/account/assets
 该 URL 中主要包括以下组成部分：</p>
 
 <ul>
 <li>协议: https</li>
-<li>域名: xdaex.com （如访问测试或预览环境，则需替换成指定的域名）</li>
+<li>域名: pro.hashkey.com （如访问测试或预览环境，则需替换成指定的域名）</li>
 <li>接口名称: APITrade</li>
 <li>版本: v1</li>
 <li>路径: 使用不同功能要访问不同的路径，例如：查询用户资产余额对应的路径是 /account/assets</li>
@@ -1056,25 +1056,25 @@ This request URL contains the following main components:</p>
 
 <p>HTML5 定义了 WebSocket 协议，允许服务端向客户端推送数据，能更好的节省服务器资源和带宽，并且能够实时地进行通讯。在 WebSocket API 中，客户端和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
 <h2 id='3-1-websocket-request-url-emsp-websocket-url'>3.1. WebSocket Request URL<br \>&emsp;^WebSocket 请求 URL</h2>
-<p>The WebSocket interface request URL is: wss://xdaex.com/APITradeWS/v1/messages.</p>
+<p>The WebSocket interface request URL is: wss://pro.hashkey.com/APITradeWS/v1/messages.</p>
 
 <p>This request URL contains the following main components:</p>
 
 <ul>
 <li>Protocol: wss</li>
-<li>Domain name: xdaex.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
+<li>Domain name: pro.hashkey.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
 <li>Interface name: APITradeWS</li>
 <li>Version: v1</li>
 <li>Path: /messages</li>
 </ul>
 
-<p>WebSocket 接口请求 URL 为: wss://xdaex.com/APITradeWS/v1/messages 。</p>
+<p>WebSocket 接口请求 URL 为: wss://pro.hashkey.com/APITradeWS/v1/messages 。</p>
 
 <p>URL 中主要包括以下组成部分：</p>
 
 <ul>
 <li>协议: wss</li>
-<li>域名: xdaex.com （如访问测试或预览环境，则需替换成指定的域名）</li>
+<li>域名: pro.hashkey.com （如访问测试或预览环境，则需替换成指定的域名）</li>
 <li>接口名称: APITradeWS</li>
 <li>版本: v1</li>
 <li>路径: /messages</li>
@@ -1571,9 +1571,9 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 </tr>
 </tbody></table>
 
-<p>For any questions related to the above, please sending an email to support@xdaex.com.</p>
+<p>For any questions related to the above, please sending an email to support@pro.hashkey.com.</p>
 
-<p>若 API 用户对于以上仍有疑问，请发送邮件至 support@xdaex.com 。</p>
+<p>若 API 用户对于以上仍有疑问，请发送邮件至 support@pro.hashkey.com 。</p>
 
 <hr>
 
