@@ -310,14 +310,6 @@
           </li>
           <li>
             <a href="#4-sample-code" class="toc-h1 toc-link" data-title="4. Sample Code ^示例代码">4. Sample Code ^示例代码</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#4-1-rest-interface-rest" class="toc-h2 toc-link" data-title="4.1. REST Interface ^REST 接口">4.1. REST Interface ^REST 接口</a>
-                  </li>
-                  <li>
-                    <a href="#4-2-websocket-subscription-emsp-websocket" class="toc-h2 toc-link" data-title="4.2. WebSocket Subscription ^WebSocket 订阅">4.2. WebSocket Subscription<br> ^WebSocket 订阅</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#5-request-response-code-table-emsp" class="toc-h1 toc-link" data-title="5. Request-Response Code Table ^请求应答编码对照表">5. Request-Response Code Table<br> ^请求应答编码对照表</a>
@@ -1351,37 +1343,13 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <p>In order to implement the heartbeat mechanism, the WebSocket subscriber should sends a &#39;ping&#39; message to the server once per <b>15</b> seconds and then the server replies to the subscriber with a &#39;pong&#39; message.</p>
 
 <p>为了实现心跳机制，WebSocket 订阅方每<b>15</b>秒向服务器发送一次&quot;ping&quot; 消息，然后服务器会向订阅方回复一个 &quot;pong&quot; 消息。</p>
-<h1 id='4-sample-code'>4. Sample Code ^示例代码</h1><h2 id='4-1-rest-interface-rest'>4.1. REST Interface ^REST 接口</h2>
+<h1 id='4-sample-code'>4. Sample Code ^示例代码</h1>
 <ul>
-<li>Java
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/raw/master/java/xdaex-trading-sdk-1.0.jar">Java SDK</a></li>
-<li> <a href="https://github.com/XDAEX/API/wiki/REST_sample_java">Java Sample</a></li>
-</ul></li>
-<li>Python
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/wiki/REST_sample_python">Python Sample</a></li>
-</ul></li>
-<li>Golang
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/tree/master/golang/eccutils">Golang Package</a></li>
-<li> <a href="https://github.com/XDAEX/API/wiki/REST_sample_golang">Golang Sample</a></li>
-</ul></li>
-<li>C++
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/raw/master/cpp/eccutils.hpp">C++ header</a></li>
-<li> <a href="https://github.com/XDAEX/API_Docs/wiki/REST_sample_cpp">C++ Sample</a></li>
-</ul></li>
-</ul>
-<h2 id='4-2-websocket-subscription-emsp-websocket'>4.2. WebSocket Subscription<br \>&emsp;^WebSocket 订阅</h2>
-<ul>
-<li><a href="https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_javascript">JavaScript</a></li>
-<li><a href="https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_golang">Golang</a></li>
-<li><a href="https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_cpp">C++</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/golang">Golang</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/python">Python</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/cpp">C++</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/javascript">JavaScript</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/java">Java</a></li>
 </ul>
 <h1 id='5-request-response-code-table-emsp'>5. Request-Response Code Table<br \>&emsp;^请求应答编码对照表</h1><h2 id='5-1-success-response'>5.1. Success Response ^成功应答</h2>
 <p>The HTTP response code is 200 for all success responses which may contain other information about the response. Please refer to the details of the specific interface.</p>
