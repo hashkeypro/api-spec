@@ -324,7 +324,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li>Release Number 4.2.0</li>
+            <li>Release Number 4.3.0</li>
             <li><a href='https://hashkeypro.github.io/api'>API home page</a></li>
             <li><a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a></li>
         </ul>
@@ -533,31 +533,22 @@ This request URL contains the following main components:</p>
 <li>Combine data: data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp is the timestamp（UTC）in the HTTP request message header.</li>
 <li>HTTP Method can be GET or POST, all in uppercase.</li>
-<li>version + path, such as: /v1/account/assets
+<li>version + path, such as: /v1/info/version
 
 <ul>
 <li>The jsonBody is in JSON format. If the HTTP Method is GET, the jsonBody must be empty.</li>
-<li>GET request example: data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET request example: data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST request example: data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>Use SHA256 algorithm to get the hash of the data, then convert the hash into a hexadecimal string in lowercase: hashedData = SHA256(data) </li>
+<li>Use the private key to sign the hash of the data (Algorithm: ECDSA, Hash Function: Keccak 256, Elliptic Curve: secp256k1): sign (data)</li>
 <li>Example:
 
 <ul>
 <li>Input:</li>
-<li>data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>data = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>privateKey = &quot;uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=&quot;</li>
 <li>Output:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>Use the private key to sign the hash of the data (Algorithm: ECC, Elliptic Curve: secp256k1): sign (hashedData)</li>
-<li>Example:
-
-<ul>
-<li>Input:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>privateKey = &quot;VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Z=&quot;</li>
-<li>Output:</li>
-<li>signedData = {&quot;r&quot;:&quot;egMRmhmMNL9N94eKxj0xCDgh115u54cWPHNQEKt4nL4=&quot;, &quot;s&quot;:&quot;QlgLvEbzRqIBVEsusI7gbDnVtpqVxHWBQw2CdgBrpUU=&quot;,&quot;v&quot;:27}</li>
+<li>signedData = {&quot;r&quot;:&quot;A+wY1dLtlur/dZsTepZEBWbA8rMoSkwAIeq42CZqATU=&quot;,&quot;s&quot;:&quot;K0Sw5UlgYSzmmMMCBwdHWYiAbEah7dcCgo8H0h6rRMM=&quot;,&quot;v&quot;:28}</li>
 </ul></li>
 </ul></li>
 <li>获得 AUTH-TYPE 为 &quot;PUB-PRIV&quot; 的 API-SIGNATURE 的步骤
@@ -566,31 +557,22 @@ This request URL contains the following main components:</p>
 <li>拼装原文：data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp 就是HTTP请求消息头中的时间戳（UTC）</li>
 <li>HTTP Method 可以是 GET 或 POST，全部为大写格式</li>
-<li>version + path， 如：/v1/account/assets</li>
+<li>version + path， 如：/v1/info/version</li>
 <li>jsonBody 采用了 json 格式，如果是 GET 请求，则 jsonBody 为空
 
 <ul>
-<li>GET 请求范例：data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET 请求范例：data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST 请求范例：data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>用 SHA256 算法对原文计算 hash ，得到小写16进制字符串： hashedData = SHA256(data)</li>
+<li>用私钥对 data 的哈希摘要 签名（算法：ECDSA，哈希函数：Keccak 256, 椭圆曲线：secp256k1 ）: sign(data)</li>
 <li>范例：
 
 <ul>
 <li>输入：</li>
-<li>data = &quot;1234567891234GET/v1/account/assets&quot;</li>
+<li>hashedData = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>privateKey = &quot;uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=&quot;</li>
 <li>输出：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>用私钥对 hash 结果签名（算法：ECC，椭圆曲线：secp256k1 ）: sign(hashedData)</li>
-<li>范例：
-
-<ul>
-<li>输入：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>privateKey = &quot;VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Z=&quot;</li>
-<li>输出：</li>
-<li>signedData = {&quot;r&quot;:&quot;egMRmhmMNL9N94eKxj0xCDgh115u54cWPHNQEKt4nL4=&quot;, &quot;s&quot;:&quot;QlgLvEbzRqIBVEsusI7gbDnVtpqVxHWBQw2CdgBrpUU=&quot;,&quot;v&quot;:27}</li>
+<li>signedData = {&quot;r&quot;:&quot;A+wY1dLtlur/dZsTepZEBWbA8rMoSkwAIeq42CZqATU=&quot;,&quot;s&quot;:&quot;K0Sw5UlgYSzmmMMCBwdHWYiAbEah7dcCgo8H0h6rRMM=&quot;,&quot;v&quot;:28}</li>
 </ul></li>
 </ul></li>
 <li>Steps to get an API-SIGNATURE with AUTH-TYPE &quot;HMAC&quot;
@@ -599,31 +581,22 @@ This request URL contains the following main components:</p>
 <li>Combine data: data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp is the timestamp (UTC) in the HTTP request message header.</li>
 <li>HTTP Method can be GET or POST, all in uppercase.</li>
-<li>version + path, such as: /v1/account/assets
+<li>version + path, such as: /v1/info/version
 
 <ul>
 <li>The jsonBody is in JSON format. If the HTTP Method is GET, the jsonBody must be empty.</li>
-<li>GET request example: data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET request example: data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST request example: data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>Use SHA256 algorithm to get the hash of the data, then convert the hash into a hexadecimal string in lowercase: hashedData = SHA256(data) </li>
+<li>Derive the message authentication code from the hash and the secret key (Algorithm: SHA256HMAC): SHA256HMAC (secretKey, data)</li>
 <li>Example:
 
 <ul>
 <li>Input:</li>
-<li>data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>data = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>secretKey = &quot;vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw=&quot;</li>
 <li>Output:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>Derive the message authentication code from the hash and the secret key (Algorithm: SHA256HMAC): SHA256HMAC (secretKey, hashedData)</li>
-<li>Example:
-
-<ul>
-<li>Input:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>secretKey = &quot;0adabfc46fa8062d92a4e8313ffce285efbb70dfcdb1e3d0c415dd17759a8303&quot;</li>
-<li>Output:</li>
-<li>signedData = &quot;Gkg0nwKpeQNw7h3hSiNGH1jem2y9M+vILdSDnG3ucSQ=&quot;</li>
+<li>signedData = &quot;ApWKKdIA50Jml757tWkaSs9ZeTObwLMPh1cAaVBZgD0=&quot;</li>
 </ul></li>
 </ul></li>
 <li>获得对应 AUTH-TYPE 为 &quot;HMAC&quot; 的 API-SIGNATURE 的步骤
@@ -632,31 +605,22 @@ This request URL contains the following main components:</p>
 <li>拼装原文：data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp 就是HTTP请求消息头中的时间戳（UTC）</li>
 <li>HTTP Method 可以是 GET 或 POST，全部为大写格式</li>
-<li>version + path， 如：/v1/account/assets</li>
+<li>version + path， 如：/v1/info/version</li>
 <li>jsonBody 采用了 json 格式，如果是 GET 请求，则 jsonBody 为空
 
 <ul>
-<li>GET 请求范例：data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET 请求范例：data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST 请求范例：data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>用 SHA256 算法对原文计算 hash ，得到小写16进制字符串： hashedData = SHA256(data)</li>
+<li>用密钥结合原文的 hash 计算出消息验证码（算法： SHA256HMAC ）: SHA256HMAC(secretKey, data)</li>
 <li>范例：
 
 <ul>
 <li>输入：</li>
-<li>data = &quot;1234567891234GET/v1/account/assets&quot;</li>
+<li>data = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>secretKey = &quot;vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw=&quot;</li>
 <li>输出：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>用密钥结合原文的 hash 计算出消息验证码（算法： SHA256HMAC ）: SHA256HMAC(secretKey, hashedData)</li>
-<li>范例：
-
-<ul>
-<li>输入：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>secretKey = &quot;0adabfc46fa8062d92a4e8313ffce285efbb70dfcdb1e3d0c415dd17759a8303&quot;</li>
-<li>输出：</li>
-<li>signedData = &quot;Gkg0nwKpeQNw7h3hSiNGH1jem2y9M+vILdSDnG3ucSQ=&quot;</li>
+<li>signedData = &quot;ApWKKdIA50Jml757tWkaSs9ZeTObwLMPh1cAaVBZgD0=&quot;</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -682,7 +646,7 @@ This request URL contains the following main components:</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.1.2"</span>    <span class="c1">//API release number ^API 发行号</span>
+    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.3.0"</span>    <span class="c1">//API release number ^API 发行号</span>
 <span class="p">}</span>
 </code></pre>
 <p>Query the API release number that applies to the current environment.</p>
@@ -913,7 +877,7 @@ This request URL contains the following main components:</p>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>              <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>              <span class="c1">//Time of insertion ^下单时间</span>
-    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
+    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>              <span class="c1">//Time of cancellation ^撤单时间</span>
 <span class="p">}</span>
@@ -938,8 +902,8 @@ This request URL contains the following main components:</p>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span><span class="p">,</span>    <span class="c1">//Start timestamp of query (optional) ^查询起始时间戳（非必填）</span>
-    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674567"</span><span class="p">,</span>      <span class="c1">//End timestamp of query (optional) ^查询结束时间戳（非必填）</span>
+    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span><span class="p">,</span>    <span class="c1">//Start timestamp of query (optional) ^查询起始时间戳（非必填）</span>
+    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674567123"</span><span class="p">,</span>      <span class="c1">//End timestamp of query (optional) ^查询结束时间戳（非必填）</span>
     <span class="s2">"orderStatus"</span><span class="p">:</span> <span class="s2">"active"</span><span class="p">,</span>           <span class="c1">//Order status (optional) {(active-order still in order book, corresponding to status 1, 3), (closed-order not in order book, corresponding to status 0, 2, 4, 5, 6), (not specified or an empty string - all status)} ^订单状态（非必填）{(active-订单在订单簿中，对应状态1、3), (closed-订单不在订单簿中，对应状态0、2、4、5、6), (未指定本项或本项为空字符串-对应所有状态)｝。</span>
     <span class="s2">"instrumentID"</span><span class="p">:</span> <span class="s2">"ETH-BTC"</span><span class="p">,</span>         <span class="c1">//Instrument ID (optional) ^合约ID（非必填）</span>
     <span class="s2">"orderSysID"</span><span class="p">:</span> <span class="s2">"1412943752000004"</span>   <span class="c1">//Order system ID (optional) ^系统订单ID（非必填）</span>
@@ -963,7 +927,7 @@ This request URL contains the following main components:</p>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>             <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>             <span class="c1">//Time of insertion ^下单时间</span>
-    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968"</span><span class="p">,</span>      <span class="c1">//Timestamp of insertion ^下单时间戳</span>
+    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>      <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>             <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>             <span class="c1">//Time of cancellation ^撤单时间</span>
 <span class="p">}</span>
@@ -984,8 +948,8 @@ This request URL contains the following main components:</p>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span><span class="p">,</span>  <span class="c1">//Start timestamp of query (optional) ^查询起始时间戳（非必填）</span>
-    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span><span class="p">,</span>    <span class="c1">//End timestamp of query (optional) ^查询结束时间戳（非必填）</span>
+    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span><span class="p">,</span>  <span class="c1">//Start timestamp of query (optional) ^查询起始时间戳（非必填）</span>
+    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span><span class="p">,</span>    <span class="c1">//End timestamp of query (optional) ^查询结束时间戳（非必填）</span>
     <span class="s2">"instrumentID"</span><span class="p">:</span> <span class="s2">"ETH-BTC"</span>        <span class="c1">//Instrument ID (optional) ^合约ID（非必填）</span>
 <span class="p">}</span>
 </code></pre>
@@ -1005,7 +969,7 @@ This request URL contains the following main components:</p>
         <span class="s2">"fee"</span><span class="p">:</span> <span class="s2">"0.1"</span><span class="p">,</span>                           <span class="c1">//Fee ^手续费</span>
         <span class="s2">"tradeDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>                <span class="c1">//Date of trade ^成交日期</span>
         <span class="s2">"tradeTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>                <span class="c1">//Time of trade ^成交时间</span>
-        <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span>          <span class="c1">//Timestamp of trade ^成交时间戳</span>
+        <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span>          <span class="c1">//Timestamp of trade ^成交时间戳</span>
     <span class="p">},</span>
     <span class="p">...</span>
 <span class="p">]</span>
@@ -1089,12 +1053,12 @@ This request URL contains the following main components:</p>
 <p>API 接入用户可通过订阅方式获取由交易所推送的私有消息流。提交私有流订阅请求时需要通过 API-KEY 进行认证。</p>
 
 <ul>
-<li><p>Use the string &quot;WSS/APITradeWS/v1/messages&quot; directly (<font color="#dd0000" face="black">no need to hash the string</font>) to generate a digital signature or a message authentication code. </p></li>
-<li><p>直接使用字串&quot;WSS/APITradeWS/v1/messages&quot;（<font color="#dd0000" face ="black">不需要对它计算hash </font>）生成数字签名或消息验证码。</p></li>
+<li><p>Use the string &quot;WSS/APITradeWS/v1/messages&quot; to generate a digital signature or a message authentication code. </p></li>
+<li><p>使用字串 &quot;WSS/APITradeWS/v1/messages&quot; 生成数字签名或消息验证码。</p></li>
 <li><p>Steps to get an API-SIGNATURE with AUTH-TYPE &quot;PUB-PRIV&quot;</p>
 
 <ul>
-<li>Use the private key to sign the string &quot;WSS/APITradeWS/v1/messages&quot; (Algorithm: ECC, Elliptic Curve: secp256k1): sign (&quot;WSS/APITradeWS/v1/messages&quot;)</li>
+<li>Use the private key to sign the string &quot;WSS/APITradeWS/v1/messages&quot; (Algorithm: ECDSA, Hash function: Keccak 256, Elliptic Curve: secp256k1): sign (&quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <li>Example:
 
 <ul>
@@ -1108,7 +1072,7 @@ This request URL contains the following main components:</p>
 <li><p>获得 AUTH-TYPE 为 &quot;PUB-PRIV&quot; 的 API-SIGNATURE 的步骤</p>
 
 <ul>
-<li>用私钥对字串 &quot;WSS/APITradeWS/v1/messages&quot; 签名（算法： ECC ，椭圆曲线： secp256k1 ）: sign(&quot;WSS/APITradeWS/v1/messages&quot;)</li>
+<li>用私钥对字串 &quot;WSS/APITradeWS/v1/messages&quot; 签名（算法： ECDSA， 哈希函数： Keccak 256, 椭圆曲线： secp256k1）: sign(&quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <li>范例：
 
 <ul>
@@ -1173,7 +1137,7 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"05:42:38"</span><span class="p">,</span>              <span class="c1">//Time of insertion ^下单时间</span>
-    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
+    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>              <span class="c1">//Time of cancellation ^撤单时间</span>
 <span class="p">}</span>
@@ -1257,7 +1221,7 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"volume "</span><span class="p">:</span> <span class="s2">"0.03"</span><span class="p">,</span>              <span class="c1">//Traded volume in the execution ^本次成交的数量</span>
     <span class="s2">"tradeDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>        <span class="c1">//Date of trade ^成交日期</span>
     <span class="s2">"tradeTime"</span><span class="p">:</span> <span class="s2">"10:08:06"</span><span class="p">,</span>        <span class="c1">//Time of trade ^成交时间</span>
-    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
+    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
 <span class="p">}</span>
 
 <span class="p">{</span><span class="c1">//example</span>
@@ -1268,7 +1232,7 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"volume "</span><span class="p">:</span> <span class="s2">"0.03"</span><span class="p">,</span>              <span class="c1">//Traded volume in the execution ^本次成交的数量</span>
     <span class="s2">"tradeDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>        <span class="c1">//Date of trade ^成交日期</span>
     <span class="s2">"tradeTime"</span><span class="p">:</span> <span class="s2">"10:08:06"</span><span class="p">,</span>        <span class="c1">//Time of trade ^成交时间</span>
-    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
+    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
 <span class="p">}</span>
 </code></pre>
 <p>If you&#39;ve subscribed to the ticker message flow, the following ticker message will be published when orders are executed:</p>
@@ -1578,6 +1542,11 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <td>4.2</td>
 <td>2018/11/8</td>
 <td>Add an authentication method &quot;HMAC&quot;; Add descriptions for the preview environment; Add an API to query API Release Number. ^增加“ HMAC ”授权方式；增加关于预览环境的描述；增加查询 API 发行号的 API。</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>2019/1/21</td>
+<td>Improve timestamp accuracy; Optimize authentication process. ^改进时间戳精度；优化授权过程。</td>
 </tr>
 </tbody></table>
 
