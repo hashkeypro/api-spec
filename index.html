@@ -324,7 +324,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li>Release Number 4.3.0</li>
+            <li>Release Number 4.3.1</li>
             <li><a href='https://hashkeypro.github.io/api'>API home page</a></li>
             <li><a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a></li>
         </ul>
@@ -646,7 +646,7 @@ This request URL contains the following main components:</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.3.0"</span>    <span class="c1">//API release number ^API 发行号</span>
+    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.3.1"</span>    <span class="c1">//API release number ^API 发行号</span>
 <span class="p">}</span>
 </code></pre>
 <p>Query the API release number that applies to the current environment.</p>
@@ -737,7 +737,8 @@ This request URL contains the following main components:</p>
     <span class="s2">"limitPrice"</span><span class="p">:</span> <span class="s2">"1.23"</span><span class="p">,</span>                  <span class="c1">//Price of limit order (can not be empty and needs to be greater than 0.) ^限价订单的价格（不能为空且需大于0）</span>
     <span class="s2">"volumeTotalOriginal"</span><span class="p">:</span> <span class="s2">"4.56"</span><span class="p">,</span>         <span class="c1">//Original total volume (can not be empty and needs to be greater than 0.) ^初始的总数量（不能为空且需大于0）</span>
     <span class="s2">"timeCondition"</span><span class="p">:</span> <span class="s2">"GTC"</span><span class="p">,</span>                <span class="c1">//Time in force conditions, only GTC (Good Till Cancel) is supported now. GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC（撤销前一直有效），未来计划支持 GFS（当前Session有效）、 IOC（立即成交否则撤销）等。</span>
-    <span class="s2">"orderLocalID"</span><span class="p">:</span> <span class="s2">"15362989689714502"</span>    <span class="c1">//order local ID assigned by the user rather than the exchange. It should be incremental and unique. ^由用户（而非交易所）分配的本地订单ID，建议确保其增长性及唯一性。</span>
+    <span class="s2">"orderLocalID"</span><span class="p">:</span> <span class="s2">"15362989689714502"</span><span class="p">,</span>   <span class="c1">//order local ID assigned by the user rather than the exchange. It should be incremental and unique. ^由用户（而非交易所）分配的本地订单ID，建议确保其增长性及唯一性。</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <blockquote>
@@ -880,6 +881,7 @@ This request URL contains the following main components:</p>
     <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>              <span class="c1">//Time of cancellation ^撤单时间</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <p>Similar to cancelling orders, there are two ways to query orders: either by orderLocalID or by orderSysID.</p>
@@ -930,6 +932,7 @@ This request URL contains the following main components:</p>
     <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>      <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>             <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>             <span class="c1">//Time of cancellation ^撤单时间</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <ul>
@@ -1140,6 +1143,7 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>              <span class="c1">//Time of cancellation ^撤单时间</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <p>When the order status changes (e.g. success of insertion, success of cancellation, execution, etc.), the following message will be published:</p>
@@ -1502,6 +1506,21 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <td>2022</td>
 <td>TimeCondition error</td>
 <td>TimeCondition error. Only GTC (Good Till Cancel) is supported now. <br /> 订单有效期类型错误，目前支持 GTC（撤销前一直有效）。</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>This order can not be a maker</td>
+<td>--- <br /> 该订单不会成为 maker</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>This order can not be a taker</td>
+<td>--- <br /> 该订单不会成为 taker</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>Invalid makerFlag</td>
+<td>--- <br /> 不合法的 makerFlag</td>
 </tr>
 </tbody></table>
 
