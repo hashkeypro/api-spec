@@ -1509,13 +1509,13 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 </tr>
 <tr>
 <td>2023</td>
-<td>This order can not be a maker</td>
-<td>--- <br /> 该订单不会成为 maker</td>
+<td>This maker-only order is rejected because it would have been executed as a taker.</td>
+<td>--- <br /> 该 maker-only 订单被拒单了，因为它本能作为 taker 被执行。</td>
 </tr>
 <tr>
 <td>2024</td>
-<td>This order can not be a taker</td>
-<td>--- <br /> 该订单不会成为 taker</td>
+<td>This taker-only order is rejected because it would have been executed as a maker.</td>
+<td>--- <br /> 该 taker-only 订单被拒单了，因为它本能作为 maker 被执行。</td>
 </tr>
 <tr>
 <td>2025</td>
