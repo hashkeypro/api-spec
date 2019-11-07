@@ -510,9 +510,9 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
     "limitPrice": "0.11",                 //Price of limit order ^限价订单的价格
     "volumeTotalOriginal": "1",           //Original total volume ^初始的总数量
     "volumeTotal ": "0.2",                //Remaining open volume ^剩余未成交量
-    "volumeTraded": "0",                  //Total traded volume ^已成交总量
+    "volumeTraded": "0.8",                  //Total traded volume ^已成交总量
     "timeCondition": "GTC",               //Time in force conditions, GTC (Good Till Cancel) is supported now, GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC （撤销前一直有效），未来计划支持 GFS （当前Session有效）、 IOC （立即成交否则撤销）等。
-    "orderStatus": "0",                   //Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）
+    "orderStatus": "1",                   //Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）
     "actionTimestamp": "1536298968123",    //Timestamp of the last change to the order status^ 状态变化时间戳
     "insertDate": "20180829",             //Date of insertion ^下单日期
     "insertTime": "07:45:10",             //Time of insertion ^下单时间
@@ -711,9 +711,9 @@ After subscribing to a private flow, the subscriber will receive the following t
     "limitPrice": "502.1",                 //Price of limit order ^限价订单的价格
     "volumeTotalOriginal": "1.34",         //Original total volume ^初始的总数量
     "volumeTotal": "1.33",                 //Remaining open volume ^剩余未成交量
-    "volumeTraded": "0.1",                 //Total traded volume ^已成交总量
+    "volumeTraded": "0.01",                 //Total traded volume ^已成交总量
     "timeCondition": "GTC",                //Time in force conditions, only GTC (Good Till Cancel) is supported now. GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC（撤销前一直有效），未来计划支持 GFS（当前Session有效）、 IOC（立即成交否则撤销）等。
-    "orderStatus": "5",                    //Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）
+    "orderStatus": "1",                    //Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）
     "actionTimestamp": "1536298968123",    //Timestamp of the last change to the order status^ 状态变化时间戳
     "insertDate": "20180907",              //Date of insertion ^下单日期
     "insertTime": "05:42:38",              //Time of insertion ^下单时间
