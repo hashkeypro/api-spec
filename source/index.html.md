@@ -7,7 +7,7 @@ title: HashKey Pro Trading and Market Data API Specification ^HashKey Pro 交易
 search: true
 
 toc_footers:
-    - Release Number 4.3.1
+    - Release Number 4.3.2
     - <a href='https://hashkeypro.github.io/api'>API home page</a>
     - <a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a>
 ---
@@ -229,7 +229,7 @@ Query the server time in UTC (Coordinated Universal Time).
  
 ```javascript
 {//example
-    "version": "4.3.1"    //API release number ^API 发行号
+    "version": "4.3.2"    //API release number ^API 发行号
 }
 ```
 
@@ -537,7 +537,7 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   
 ```javascript
 {//example
-    "tradeId": "141334225600003",         //trade ID (optional) ^成交ID（非必填）
+    "tradeID": "141334225600003",         //trade ID (optional) ^成交ID（非必填）
     "startTimestamp": "1420675555555",    //Timestamp starts from (optional) ^从此时间戳开始查询（非必填）
     "endTimestamp": "1420675666666",      //Timestamp ends with (optional) ^到此时间戳结束查询（非必填）
     "instrumentID": "ETH-BTC"        //Instrument ID (optional) ^合约ID（非必填）
