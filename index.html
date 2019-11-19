@@ -324,7 +324,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li>Release Number 4.3.1</li>
+            <li>Release Number 4.3.2</li>
             <li><a href='https://hashkeypro.github.io/api'>API home page</a></li>
             <li><a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a></li>
         </ul>
@@ -437,12 +437,12 @@
 <li>Test Environment: In order to protect users&#39; assets, it is highly recommended that API users complete the necessary system tests in the test environment before accessing the production environment for trading. 
 
 <ul>
-<li>Domain name: <a href="api-test.pro.hashkey.com">api-test.pro.hashkey.com</a></li>
+<li>Domain name: <a href="api-test-pro.hashkey.com">api-test-pro.hashkey.com</a></li>
 </ul></li>
 <li>Preview Environment: To help users prepare for API updates, conduct compatible tests for instance, all API updates take effect in the preview environment first. Then, after a preannounced period of time, the test environment and the production environment will be updated.
 
 <ul>
-<li>Domain name: <a href="api-preview.pro.hashkey.com">api-preview.pro.hashkey.com</a></li>
+<li>Domain name: <a href="preview-pro.hashkey.com">preview-pro.hashkey.com</a></li>
 </ul></li>
 </ul>
 
@@ -452,12 +452,12 @@
 <li>测试环境：为了保护用户资产，建议 API 用户在测试环境中完成必要的系统测试后，再接入生产系统进行交易。
 
 <ul>
-<li>域名：<a href="api-test.pro.hashkey.com">api-test.pro.hashkey.com</a></li>
+<li>域名：<a href="api-test-pro.hashkey.com">api-test-pro.hashkey.com</a></li>
 </ul></li>
 <li>预览环境：每次 API 功能迭代时会先对预览环境进行升级，以便于用户尽早开展兼容性测试等升级准备工作，并将在约定的一段时间后同步更新测试环境和生产环境。
 
 <ul>
-<li>域名：<a href="api-preview.pro.hashkey.com">api-preview.pro.hashkey.com</a></li>
+<li>域名：<a href="preview-pro.hashkey.com">preview-pro.hashkey.com</a></li>
 </ul></li>
 </ul>
 
@@ -646,7 +646,7 @@ This request URL contains the following main components:</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.3.1"</span>    <span class="c1">//API release number ^API 发行号</span>
+    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.3.2"</span>    <span class="c1">//API release number ^API 发行号</span>
 <span class="p">}</span>
 </code></pre>
 <p>Query the API release number that applies to the current environment.</p>
@@ -923,9 +923,9 @@ This request URL contains the following main components:</p>
     <span class="s2">"limitPrice"</span><span class="p">:</span> <span class="s2">"0.11"</span><span class="p">,</span>                 <span class="c1">//Price of limit order ^限价订单的价格</span>
     <span class="s2">"volumeTotalOriginal"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>           <span class="c1">//Original total volume ^初始的总数量</span>
     <span class="s2">"volumeTotal "</span><span class="p">:</span> <span class="s2">"0.2"</span><span class="p">,</span>                <span class="c1">//Remaining open volume ^剩余未成交量</span>
-    <span class="s2">"volumeTraded"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>                  <span class="c1">//Total traded volume ^已成交总量</span>
+    <span class="s2">"volumeTraded"</span><span class="p">:</span> <span class="s2">"0.8"</span><span class="p">,</span>                  <span class="c1">//Total traded volume ^已成交总量</span>
     <span class="s2">"timeCondition"</span><span class="p">:</span> <span class="s2">"GTC"</span><span class="p">,</span>               <span class="c1">//Time in force conditions, GTC (Good Till Cancel) is supported now, GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC （撤销前一直有效），未来计划支持 GFS （当前Session有效）、 IOC （立即成交否则撤销）等。</span>
-    <span class="s2">"orderStatus"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>                   <span class="c1">//Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）</span>
+    <span class="s2">"orderStatus"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>                   <span class="c1">//Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）</span>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>             <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>             <span class="c1">//Time of insertion ^下单时间</span>
@@ -951,7 +951,7 @@ This request URL contains the following main components:</p>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"tradeId"</span><span class="p">:</span> <span class="s2">"141334225600003"</span><span class="p">,</span>         <span class="c1">//trade ID (optional) ^成交ID（非必填）</span>
+    <span class="s2">"tradeID"</span><span class="p">:</span> <span class="s2">"141334225600003"</span><span class="p">,</span>         <span class="c1">//trade ID (optional) ^成交ID（非必填）</span>
     <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420675555555"</span><span class="p">,</span>    <span class="c1">//Timestamp starts from (optional) ^从此时间戳开始查询（非必填）</span>
     <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420675666666"</span><span class="p">,</span>      <span class="c1">//Timestamp ends with (optional) ^到此时间戳结束查询（非必填）</span>
     <span class="s2">"instrumentID"</span><span class="p">:</span> <span class="s2">"ETH-BTC"</span>        <span class="c1">//Instrument ID (optional) ^合约ID（非必填）</span>
@@ -1135,9 +1135,9 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"limitPrice"</span><span class="p">:</span> <span class="s2">"502.1"</span><span class="p">,</span>                 <span class="c1">//Price of limit order ^限价订单的价格</span>
     <span class="s2">"volumeTotalOriginal"</span><span class="p">:</span> <span class="s2">"1.34"</span><span class="p">,</span>         <span class="c1">//Original total volume ^初始的总数量</span>
     <span class="s2">"volumeTotal"</span><span class="p">:</span> <span class="s2">"1.33"</span><span class="p">,</span>                 <span class="c1">//Remaining open volume ^剩余未成交量</span>
-    <span class="s2">"volumeTraded"</span><span class="p">:</span> <span class="s2">"0.1"</span><span class="p">,</span>                 <span class="c1">//Total traded volume ^已成交总量</span>
+    <span class="s2">"volumeTraded"</span><span class="p">:</span> <span class="s2">"0.01"</span><span class="p">,</span>                 <span class="c1">//Total traded volume ^已成交总量</span>
     <span class="s2">"timeCondition"</span><span class="p">:</span> <span class="s2">"GTC"</span><span class="p">,</span>                <span class="c1">//Time in force conditions, only GTC (Good Till Cancel) is supported now. GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC（撤销前一直有效），未来计划支持 GFS（当前Session有效）、 IOC（立即成交否则撤销）等。</span>
-    <span class="s2">"orderStatus"</span><span class="p">:</span> <span class="s2">"5"</span><span class="p">,</span>                    <span class="c1">//Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）</span>
+    <span class="s2">"orderStatus"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>                    <span class="c1">//Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）</span>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"05:42:38"</span><span class="p">,</span>              <span class="c1">//Time of insertion ^下单时间</span>
