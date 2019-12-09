@@ -96,16 +96,16 @@ Note: For related information about API access management, rate limit and test/p
 In addition to the production environment, where users interact with the real market, the exchange provides other two environments:
 
 * Test Environment: In order to protect users' assets, it is highly recommended that API users complete the necessary system tests in the test environment before accessing the production environment for trading. 
-  - Domain name: [api-test-pro.hashkey.com](api-test-pro.hashkey.com)
+  - Domain name: [api-test-pro.hashkey.com](https://api-test-pro.hashkey.com)
 * Preview Environment: To help users prepare for API updates, conduct compatible tests for instance, all API updates take effect in the preview environment first. Then, after a preannounced period of time, the test environment and the production environment will be updated.
-  - Domain name: [preview-pro.hashkey.com](preview-pro.hashkey.com)
+  - Domain name: [preview-pro.hashkey.com](https://preview-pro.hashkey.com)
 
 在与真实市场交互的生产环境之外，交易所还为 API 用户们提供了两种环境：
 
 * 测试环境：为了保护用户资产，建议 API 用户在测试环境中完成必要的系统测试后，再接入生产系统进行交易。
-  - 域名：[api-test-pro.hashkey.com](api-test-pro.hashkey.com)
+  - 域名：[api-test-pro.hashkey.com](https://api-test-pro.hashkey.com)
 * 预览环境：每次 API 功能迭代时会先对预览环境进行升级，以便于用户尽早开展兼容性测试等升级准备工作，并将在约定的一段时间后同步更新测试环境和生产环境。
-  - 域名：[preview-pro.hashkey.com](preview-pro.hashkey.com)
+  - 域名：[preview-pro.hashkey.com](https://preview-pro.hashkey.com)
 
 API users can send an email to support@pro.hashkey.com to apply for accessing the test environment and the preview environment.
 
