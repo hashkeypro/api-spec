@@ -531,7 +531,53 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   - Version: v1
   - Path: /order/getOrder
 
-## 2.12. Query Trade<br \>&emsp;^查询成交
+## 2.12. Query Open Order<br \>&emsp;^查询待成交订单
+
+> Request:
+    
+```javascript
+{//example
+    "startTimestamp": "1420675555555",    //Timestamp starts from (optional) ^从此时间戳开始查询（非必填）
+    "endTimestamp": "1420675666666",      //Timestamp ends with (optional) ^到此时间戳结束查询（非必填）
+    "instrumentID": "ETH-BTC",         //Instrument ID (optional) ^合约ID（非必填）
+    "orderSysID": "1412943752000004"   //Order system ID (optional) ^系统订单ID（非必填）
+}
+```
+
+> Response:
+   
+```javascript
+{//example
+    "orderSysID": "1412943752000004",     //order system ID assigned by the exchange ^由交易所分配的系统订单ID
+    "orderLocalID": "15362989689714502",  //order local ID assigned by the user rather than the exchange ^由用户（而非交易所）分配的本地订单ID
+    "instrumentID": "ETH-BTC",            //Instrument ID ^合约ID
+    "direction": "buy",                   //Direction: buy/sell ^方向：买/卖
+    "orderPriceType": "limit",            //Price type, limit order is supported now (limit) ^订单价格类型，目前支持限价订单（limit）
+    "limitPrice": "0.11",                 //Price of limit order ^限价订单的价格
+    "volumeTotalOriginal": "1",           //Original total volume ^初始的总数量
+    "volumeTotal ": "0.2",                //Remaining open volume ^剩余未成交量
+    "volumeTraded": "0.8",                  //Total traded volume ^已成交总量
+    "timeCondition": "GTC",               //Time in force conditions, GTC (Good Till Cancel) is supported now, GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC （撤销前一直有效），未来计划支持 GFS （当前Session有效）、 IOC （立即成交否则撤销）等。
+    "orderStatus": "1",                   //Order status: (0-fully executed; 1-partially executed, order still in order book; 2-partially executed, order not in order book; 3-not executed, order still in order book; 4-not executed, order not in order book; 5-fully cancelled; 6-partially executed, partially cancelled) ^订单状态（0-全部成交；1-部分成交，订单还在订单簿中；2-部分成交，订单不在订单簿中；3-未成交，订单还在订单簿中；4-未成交，订单不在订单簿中；5-订单全部被撤销；6-部分成交，部分撤单）
+    "actionTimestamp": "1536298968123",    //Timestamp of the last change to the order status^ 状态变化时间戳
+    "insertDate": "20180829",             //Date of insertion ^下单日期
+    "insertTime": "07:45:10",             //Time of insertion ^下单时间
+    "insertTimestamp": "1536298968123",      //Timestamp of insertion ^下单时间戳
+    "cancelDate": "20180907",             //Date of cancellation ^撤单日期
+    "cancelTime": "05:42:57",             //Time of cancellation ^撤单时间
+    "makerFlag": "0"                       //maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。
+}
+```
+
+* This is the recommended way to query open order: If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>.
+<br />
+推荐使用本接口查询待成交订单：如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。
+
+  - Method: POST
+  - Version: v1
+  - Path: /order/getOpenOrder
+
+## 2.13. Query Trade<br \>&emsp;^查询成交
 
 > Request:
   
@@ -574,7 +620,7 @@ Query with trade ID will return the maximum number of <font color="#dd0000" face
 * Version: v1
 * Path: /trade/getTrade
 
-## 2.13. Query Level2 Market Data<br \>&emsp;^查询Level2行情数据
+## 2.14. Query Level2 Market Data<br \>&emsp;^查询Level2行情数据
 
 > Response:
     
